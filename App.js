@@ -15,7 +15,29 @@ export default function App(){
   return(
     <NavigationContainer>
       <Stack.Navigator initialRouteName = 'Task'>
+        <Stack.Screen
+          name = 'Task'
+          component = {Task}
+          options = {{
+            title: 'Lista de Tarefas',
+            headerTintColor: '#FFF',
+            headerStyle:{
+              backgroundColor: '#007BFF'
+            }
+          }}
+        />
 
+        <Stack.Screen
+          name = 'AddEdit'
+          component = {AddEdit}
+          options = {({route}) => ({
+            title: route?.params?.id ? 'Editar Tarefa' : 'Adicionar Tarefa',
+            headerTintColor: '#fff',
+            headerStyle:{
+              backgroundColor: '#007BFF'
+            }
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

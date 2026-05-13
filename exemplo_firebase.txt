@@ -1,0 +1,26 @@
+//importações referentes ao Firebase
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import 'firebase/compat/storage';
+
+//configurações referentes ao Firebase
+//substituir por suas informações do Firebase
+const firebaseConfig = {
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
+};
+
+//verificar se o Firebase foi iniciado
+if(!firebase.apps.length){
+    firebase.initializeApp(firebaseConfig);
+}
+
+//inicializar o firebase
+const database = firebase.firestore();
+
+//exprtar o database
+export default database;
