@@ -1,6 +1,6 @@
 //importações de navegação e suas telas
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/container';
+import { NavigationContainer } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 //importação de páginas

@@ -35,6 +35,7 @@ export default function Task({navigation}){
 
     return(
         <View style = {{flex: 1}}>
+            <Text>Teste 12-05-2026</Text>
         </View>
     );
 }
