@@ -41,6 +41,7 @@ export default function Task({navigation}){
             setTask(prevTask => prevTask.filter(
                 task => task.id !== taskToDelete
             ))
+            setShowDeleteModal(false);
         }
     }
 
@@ -82,7 +83,7 @@ export default function Task({navigation}){
                 'Média': 3,
                 'Baixa': 4
             }
-            return (priorityOrder || 5) - (priorityOrder || 5);
+            return (priorityOrder[a.priority] || 5) - (priorityOrder[b.priority] || 5);
         }
         return 0;
     }
@@ -90,14 +91,14 @@ export default function Task({navigation}){
     //Função para contagem de likes
     function handleLike(id, currentLikes){
         database.collection('Tasks').doc(id).update({
-            likes: (currentLikes + 1 || 0)
+            likes: (currentLikes || 0) + 1
         })
     }
 
     //Função para contagem de deslikes
     function handleDeslike(id, currentDeslikes){
         database.collection('Tasks').doc(id).update({
-            deslikes: (currentDeslikes + 1 || 0)
+            deslikes: (currentDeslikes || 0) + 1
         })
     }
 
@@ -234,25 +235,31 @@ export default function Task({navigation}){
                             {/*Botão de curtir*/}
                             <TouchableOpacity
                                 style = {{marginRight: 10, alignItems: 'center'}}
-                                onPress={() => handleLike(item.id, currentLikes)}
+                                onPress={() => handleLike(item.id, item.likes)}
                             >
                                 <FontAwesome
                                     name = 'thumbs-up'
                                     size = {20}
                                     color = '#007BFF'
                                 />
+                                <Text style = {{fontSize: 12, marginLeft: 2}}>
+                                    {item.likes || 0}
+                                </Text>
                             </TouchableOpacity>
                             
                             {/*Botão de descurtir*/}
                             <TouchableOpacity
                                 style = {{marginRight: 10, alignItems: 'center'}}
-                                onPress={() => handleDeslike(item.id, currentDeslikes)}
+                                onPress={() => handleDeslike(item.id, item.deslikes)}
                             >
                                 <FontAwesome
                                     name = 'thumbs-down'
                                     size = {20}
                                     color = '#FF0000'
                                 />
+                                <Text style = {{fontSize: 12, marginLeft: 2}}>
+                                    {item.deslikes || 0}
+                                </Text>
                             </TouchableOpacity>
 
                             {/*Botão de finalizar tarefa*/}
@@ -322,7 +329,7 @@ export default function Task({navigation}){
                         <View style = {styles.buttonContainer}>
                             <TouchableOpacity
                                 style = {[styles.button, {
-                                    backgroundColor: '#4CAF50',
+                                    backgroundColor: '#D32F2F',
                                     width: '45%'
                                 }]}
                                 onPress = {cancelDelete}
@@ -331,7 +338,7 @@ export default function Task({navigation}){
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style = {[styles.button, {
-                                    backgroundColor: '#D32F2F',
+                                    backgroundColor: '#4CAF50',
                                     width: '45%'
                                 }]}
                                 onPress = {deleteTask}
