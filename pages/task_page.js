@@ -278,6 +278,7 @@ export default function Task({navigation}){
                             <TouchableOpacity
                                 style = {{marginRight: 10, alignItems: 'center'}}
                                 onPress={()=> navigation.navigate('AddEdit',{
+                                    id: item.id,
                                     description: item.description,
                                     priority: item.priority,
                                     date: item.date
@@ -306,16 +307,12 @@ export default function Task({navigation}){
                 )}
             />
 
-            {/*Botão de adicionar tarefa*/}
+            {/*Botão nova tarefa */}
             <TouchableOpacity
-                style = {styles.buttonNewTask}
-                onPress = {()=> navigation.navigate('AddEdit')}
+                style={styles.buttonNewTask}
+                onPress={() => navigation.navigate('AddEdit')}
             >
-                <FontAwesome
-                    name = 'plus'
-                    size = {20}
-                    color = '#FFF'
-                />
+                <FontAwesome name='plus' size={20} color='#FFF'/>
             </TouchableOpacity>
 
             {/*Modal de exclusão*/}

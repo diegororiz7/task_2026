@@ -30,7 +30,7 @@ export default function App(){
         <Stack.Screen
           name = 'AddEdit'
           component = {AddEdit}
-          options = {({route}) => ({
+          options={({route}) => ({
             title: route?.params?.id ? 'Editar Tarefa' : 'Adicionar Tarefa',
             headerTintColor: '#fff',
             headerStyle:{
