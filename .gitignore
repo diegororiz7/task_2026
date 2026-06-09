@@ -36,3 +36,7 @@ yarn-error.*
 *.tsbuildinfo
 
 firebase_config.js
+
+android
+ios
+node_modules
